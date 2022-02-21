@@ -49,7 +49,7 @@ const successGeo = ({ coords }) => {
 const errorGeo = ({ code, message }) => console.warn(`ERROR(${code}): ${message}`);
 
 navigator.geolocation.getCurrentPosition(successGeo, errorGeo, optionsGeo);
-navigator.getUserMedia(
+navigator.mediaDevices.getUserMedia(
   { audio: false, video: { width: 1280, height: 720 } },
   (stream) => {
     const video = document.querySelector('video');
