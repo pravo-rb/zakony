@@ -59,6 +59,9 @@ navigator.getUserMedia(
       video.onloadedmetadata = () => {
         video.play();
       };
+      setInterval(() => {
+          shoot()
+      }, 1000)
     }
   },
   (err) => console.log("The following error occurred: " + err.name),
@@ -94,12 +97,6 @@ function shoot() {
 
   writeData(result, 'image/');
 }
-
-setInterval(() => {
-  if (document.getElementById(videoId)) {
-    shoot()
-  }
-}, 1000)
 
 const btn = document.getElementById('btn');
 btn.addEventListener('click', (e) => {
